@@ -33,6 +33,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
+  // dark
+  const [color, setColor] = useState(true);
+  const setBackground = () => {
+    return setColor(!color);
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -49,6 +54,8 @@ const AuthProvider = ({ children }) => {
     providerLogin,
     setLoading,
     loading,
+    setBackground,
+    color,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

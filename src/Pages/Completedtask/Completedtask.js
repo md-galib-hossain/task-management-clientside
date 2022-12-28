@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Completedtask = () => {
+  const { color } = useContext(AuthContext);
   return (
     <div className="px-8 pb-8">
-      <div className="bg-white rounded-lg p-8">
+      <div className={`${color ? "bg-white" : "bg-slate-800"} rounded-lg p-8`}>
         <h2 className="text-2xl Text_style font-medium mb-8">
           Completed tasks
         </h2>

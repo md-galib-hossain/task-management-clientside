@@ -14,3 +14,10 @@ $myMargin: 2rem;
 .bg-white-color {
   background-color: white;
 }
+.border-primary-color {
+  border: 2px solid $nameColor;
+  background-color: white;
+  color: $nameColor;
+  padding: 14px 28px;
+  font-size: 16px;
+}
