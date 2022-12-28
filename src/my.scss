@@ -1,0 +1,16 @@
+$nameColor: #570df8;
+$myMargin: 2rem;
+
+.Text_style {
+  color: $nameColor;
+  margin-bottom: $myMargin;
+}
+.text-primary-color {
+  color: $nameColor;
+}
+.bg-primary-color {
+  background-color: $nameColor;
+}
+.bg-white-color {
+  background-color: white;
+}
