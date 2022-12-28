@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -11,6 +12,14 @@ const Navbar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+=======
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../../my.scss";
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
   return (
     <div className="p-8">
       {/* <div className="navbar bg-white rounded-lg">
@@ -85,7 +94,11 @@ const Navbar = () => {
       </div> */}
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-white-color rounded-lg">
         <div className="relative flex items-center justify-between">
+<<<<<<< HEAD
           <Link
+=======
+          <a
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
             to="/"
             aria-label="Company"
             title="Company"
@@ -109,6 +122,7 @@ const Navbar = () => {
             <span className="ml-2 text-xl font-bold tracking-wide text-primary-color uppercase">
               Task-Manager
             </span>
+<<<<<<< HEAD
           </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
@@ -116,6 +130,12 @@ const Navbar = () => {
                 to="/addtask"
                 className="font-medium tracking-wide text-primary-color transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
+=======
+          </a>
+          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <li>
+              <Link className="font-medium tracking-wide text-primary-color transition-colors duration-200 hover:text-deep-purple-accent-400">
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
                 Add task
               </Link>
             </li>
@@ -136,6 +156,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+<<<<<<< HEAD
           {/* dark mode */}
           <div>
             <label
@@ -168,6 +189,16 @@ const Navbar = () => {
                   Login
                 </Link>
               )}
+=======
+          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <li>
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-primary-color transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+              >
+                Sign up
+              </Link>
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
             </li>
           </ul>
           <div className="lg:hidden">
@@ -237,10 +268,14 @@ const Navbar = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
+<<<<<<< HEAD
                         <Link
                           to="/addtask"
                           className="font-medium tracking-wide text-primary-color transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
+=======
+                        <Link className="font-medium tracking-wide text-primary-color transition-colors duration-200 hover:text-deep-purple-accent-400">
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
                           Add task
                         </Link>
                       </li>
@@ -262,10 +297,14 @@ const Navbar = () => {
                       </li>
 
                       <li>
+<<<<<<< HEAD
                         <Link
                           to="/signup"
                           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                         >
+=======
+                        <Link className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none">
+>>>>>>> cd825e12c502a1ee7ccc5c6dc1034d6380defd4c
                           Sign up
                         </Link>
                       </li>
