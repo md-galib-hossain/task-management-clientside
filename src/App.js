@@ -5,7 +5,7 @@ import { router } from "./Routes/Routes";
 
 function App() {
   return (
-    <div className="App min-h-screen bg-primary">
+    <div className="App min-h-screen bg-primary-color">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
