@@ -1,8 +1,30 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import Comcard from "./Comcard";
 
 const Completedtask = () => {
-  const { color } = useContext(AuthContext);
+  const { color, user, loading } = useContext(AuthContext);
+
+  // using tanstack load task by email
+  const url = `http://localhost:5000/completedtasks?email=${user?.email}`;
+  const { data: loadedcompletedtasks = [], isLoading } = useQuery({
+    queryKey: ["completedtasks", user?.email],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const completedtasks = await res.json();
+      // console.log(completedtasks);
+      return completedtasks;
+    },
+  });
+
+  if (loading || isLoading) {
+    return (
+      <div className="mx-auto my-8 w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400"></div>
+    );
+  }
+  console.log(loadedcompletedtasks);
   return (
     <div className="px-8 pb-8">
       <div className={`${color ? "bg-white" : "bg-slate-800"} rounded-lg p-8`}>
@@ -10,121 +32,12 @@ const Completedtask = () => {
           Completed tasks
         </h2>
         <div className="grid md:grid-cols-3 lg:grid-cols-3 place-items-center gap-8 my-8">
-          {/* card */}
-          <div className="card card-compact w-auto bg-base-100 shadow-xl">
-            <figure>
-              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-            </figure>
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold tracking-wide">
-                  Donec lectus leo
-                </h2>
-                <p className="text-black">
-                  Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                  eget.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-primary-color text-white"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-          {/* card */}
-          <div className="card card-compact w-auto bg-base-100 shadow-xl">
-            <figure>
-              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-            </figure>
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold tracking-wide">
-                  Donec lectus leo
-                </h2>
-                <p className="text-black">
-                  Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                  eget.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-primary-color text-white"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-          {/* card */}
-          <div className="card card-compact w-auto bg-base-100 shadow-xl">
-            <figure>
-              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-            </figure>
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold tracking-wide">
-                  Donec lectus leo
-                </h2>
-                <p className="text-black">
-                  Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                  eget.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-primary-color text-white"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-          {/* card */}
-          <div className="card card-compact w-auto bg-base-100 shadow-xl">
-            <figure>
-              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-            </figure>
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold tracking-wide">
-                  Donec lectus leo
-                </h2>
-                <p className="text-black">
-                  Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                  eget.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-primary-color text-white"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
-          {/* card */}
-          <div className="card card-compact w-auto bg-base-100 shadow-xl">
-            <figure>
-              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-            </figure>
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold tracking-wide">
-                  Donec lectus leo
-                </h2>
-                <p className="text-black">
-                  Curabitur luctus erat nunc, sed ullamcorper erat vestibulum
-                  eget.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-primary-color text-white"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
+          {loadedcompletedtasks.map((task) => (
+            <Comcard task={task}></Comcard>
+          ))}
+          {/*  */}
+
+          {/*  */}
         </div>
       </div>
     </div>
