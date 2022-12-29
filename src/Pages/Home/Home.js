@@ -50,12 +50,7 @@ const Home = () => {
         <h2 className="text-2xl Text_style font-medium ">My tasks</h2>
         <div className="grid md:grid-cols-3 lg:grid-cols-3 place-items-center gap-8 my-8">
           {loadedtasks.length == 0 ? (
-            <h1 className="text-lg col-span-12">
-              Your task list is empty,Please add some task from
-              <Link className="text-primary-color" to="/addtask">
-                Add task
-              </Link>
-            </h1>
+            <h1 className="text-lg col-span-full">Your list is Empty</h1>
           ) : (
             loadedtasks?.map((loadedtask) => (
               <Task
