@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import "../../my.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -41,7 +42,10 @@ const Signup = () => {
         </h2>
         <p className="text-sm text-center text-gray-400">
           Have an account?
-          <Link to="/login" className="focus:underline hover:underline">
+          <Link
+            to="/login"
+            className="focus:underline hover:underline text-primary-color"
+          >
             Login here
           </Link>
         </p>

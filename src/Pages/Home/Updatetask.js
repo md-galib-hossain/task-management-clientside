@@ -19,13 +19,16 @@ const Updatetask = () => {
     setMytask(newtask);
   };
   const handleSubmit = () => {
-    fetch(`http://localhost:5000/updatetask/${task?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(mytask),
-    })
+    fetch(
+      `https://task-management-serverside.vercel.app/updatetask/${task?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(mytask),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast("Task updated sucessfully");

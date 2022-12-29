@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Addtask = () => {
-  const { user } = useContext(AuthContext);
+  const { user, color } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -33,7 +33,7 @@ const Addtask = () => {
         setLoadedimage(imgData.data.url);
       });
 
-    fetch("http://localhost:5000/addtask", {
+    fetch("https://task-management-serverside.vercel.app/addtask", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,7 +52,7 @@ const Addtask = () => {
   };
   return (
     <div className="px-8 pb-8">
-      <div className="bg-white rounded-lg p-8">
+      <div className={`${color ? "bg-white" : "bg-slate-800"} rounded-lg p-8`}>
         <h2 className="text-2xl Text_style font-medium mb-8">Add your task</h2>
         <div className="card card-compact w-auto bg-base-100 shadow-xl">
           <figure>

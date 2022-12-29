@@ -8,7 +8,7 @@ const Completedtask = () => {
   const { color, user, loading } = useContext(AuthContext);
 
   // using tanstack load task by email
-  const url = `http://localhost:5000/completedtasks?email=${user?.email}`;
+  const url = `https://task-management-serverside.vercel.app/completedtasks?email=${user?.email}`;
   const { data: loadedcompletedtasks = [], isLoading } = useQuery({
     queryKey: ["completedtasks", user?.email],
     queryFn: async () => {

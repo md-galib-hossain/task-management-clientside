@@ -6,22 +6,28 @@ import Task from "./Task";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 const Home = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user, loading, setLoading, color } = useContext(AuthContext);
   const [loadedtasks, setLoadedtasks] = useState([]);
 
   // load my products by email query
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/mytasks?email=${user?.email}`)
+      .get(
+        `https://task-management-serverside.vercel.app/mytasks?email=${user?.email}`
+      )
       .then((data) => {
         const tasks = data.data;
-
+        if (loading) {
+          return (
+            <div className="mx-auto my-8 w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400"></div>
+          );
+        }
         setLoadedtasks(tasks);
       });
   }, [user?.email]);
 
   // // using tanstack load task by email
-  // const url = `http://localhost:5000/mytasks?email=${user?.email}`;
+  // const url = `https://task-management-serverside.vercel.app/mytasks?email=${user?.email}`;
   // const { data: loadedtasks = [], isLoading } = useQuery({
   //   queryKey: ["task", user?.email],
   //   queryFn: async () => {
@@ -40,18 +46,26 @@ const Home = () => {
   console.log(loadedtasks);
   return (
     <div className="px-8 pb-8">
-      <div className="bg-white rounded-lg p-8">
+      <div className={`${color ? "bg-white" : "bg-slate-800"} rounded-lg p-8`}>
         <h2 className="text-2xl Text_style font-medium ">My tasks</h2>
         <div className="grid md:grid-cols-3 lg:grid-cols-3 place-items-center gap-8 my-8">
-          {/* card */}
-          {loadedtasks?.map((loadedtask) => (
-            <Task
-              loadedtasks={loadedtasks}
-              setLoadedtasks={setLoadedtasks}
-              key={loadedtask?._id}
-              task={loadedtask}
-            ></Task>
-          ))}
+          {loadedtasks.length == 0 ? (
+            <h1 className="text-lg col-span-12">
+              Your task list is empty,Please add some task from
+              <Link className="text-primary-color" to="/addtask">
+                Add task
+              </Link>
+            </h1>
+          ) : (
+            loadedtasks?.map((loadedtask) => (
+              <Task
+                loadedtasks={loadedtasks}
+                setLoadedtasks={setLoadedtasks}
+                key={loadedtask?._id}
+                task={loadedtask}
+              ></Task>
+            ))
+          )}
         </div>
       </div>
     </div>

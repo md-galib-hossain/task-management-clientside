@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import "../../my.scss";
 
 const Login = () => {
   const {
@@ -56,7 +57,10 @@ const Login = () => {
         </h2>
         <p className="text-sm text-center text-gray-400">
           Dont have account?
-          <Link to="/signup" className="focus:underline hover:underline">
+          <Link
+            to="/signup"
+            className="focus:underline hover:underline text-primary-color"
+          >
             Sign up here
           </Link>
         </p>

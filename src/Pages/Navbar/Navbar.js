@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import "../../my.scss";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut, setBackground, color } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Navbar = () => {
   const handleColor = () => {
     setBackground();
   };
-  console.log(color);
+  console.log(user);
   return (
     <div className="p-8">
       {/* <div className="navbar bg-white rounded-lg">
@@ -160,7 +161,7 @@ const Navbar = () => {
                   defaultValue="true"
                 />
                 <div className="w-10 h-6 rounded-full shadow-inner bg-gray-400 peer-checked:bg-violet-400"></div>
-                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-800"></div>
+                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-primary-color"></div>
               </span>
               <span className="text-black font-medium">Dark</span>
             </label>
@@ -181,6 +182,17 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
+              )}
+            </li>
+            <li>
+              {user?.photoURL ? (
+                <img
+                  alt=""
+                  className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
+                  src={user?.photoURL}
+                />
+              ) : (
+                <FaUser className="h-10 w-10 text-primary-color" />
               )}
             </li>
           </ul>
@@ -276,12 +288,21 @@ const Navbar = () => {
                       </li>
 
                       <li>
-                        <Link
-                          to="/signup"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        >
-                          Sign up
-                        </Link>
+                        {user?.email ? (
+                          <button
+                            onClick={handleLogout}
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-primary-color transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          >
+                            Log out
+                          </button>
+                        ) : (
+                          <Link
+                            to="/login"
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-primary-color transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          >
+                            Login
+                          </Link>
+                        )}
                       </li>
                     </ul>
                   </nav>

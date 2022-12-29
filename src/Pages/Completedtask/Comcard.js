@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 const Comcard = ({ task }) => {
   // handle status
   const handleStatus = (user) => {
-    fetch(`http://localhost:5000/notcompletedtasks/${task?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(task),
-    })
+    fetch(
+      `https://task-management-serverside.vercel.app/notcompletedtasks/${task?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -26,9 +29,12 @@ const Comcard = ({ task }) => {
     const agree = window.confirm(`are you confirm to delete: ${task?._id}`);
     if (agree) {
       // sending data to server
-      fetch(`http://localhost:5000/delete/${task?._id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://task-management-serverside.vercel.app/delete/${task?._id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
