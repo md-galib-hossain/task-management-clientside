@@ -12,7 +12,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { SignIn, providerLogin } = useContext(AuthContext);
+  const { SignIn, providerLogin, color } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [loginError, setLoginError] = useState("");
 
@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-primary-color p-8">
+    <div className={`${color ? "bg-primary-color" : "bg-slate-800"} p-8`}>
       <div className="w-full max-w-md p-4 rounded-md mx-auto shadow sm:p-8 bg-white text-black">
         <h2 className="mb-3 text-3xl font-semibold text-center">
           Login to your account
